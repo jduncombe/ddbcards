@@ -1,7 +1,7 @@
 from dndtypes.__common import *
 
 def calc_ac(baseac, modifiers):
-    if modifiers is not None and len(modifiers) > 0:
+    if modifiers is not None and len(modifiers) > 0 and  modifiers[0]['value'] is not None:
         return baseac + modifiers[0]['value']
     return baseac
 

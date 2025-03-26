@@ -42,5 +42,6 @@ if __name__ == "__main__":
         cardsjson.extend(convert_spells(raw_spells, 'robe'))
         cardsjson.extend(convert_weapons(get_items_by_type(raw_inventory, "Weapon")))
         cardsjson.extend(convert_armor(get_items_by_type(raw_inventory, "Armor")))
+        cardsjson.extend(convert_action(charjson["data"]["actions"]))
         with open(os.path.join(args.output, name+".json"), mode="wt") as f:
             json.dump(cardsjson, f)
