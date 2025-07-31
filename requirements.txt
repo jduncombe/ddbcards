@@ -1,0 +1,2 @@
+weasyprint==66.0
+requests==2.32.4
