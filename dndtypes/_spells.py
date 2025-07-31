@@ -7,9 +7,9 @@ def get_spells(charjson):
     return raw_spells
 
 def generate_spell_subtitle(level, school):
-    if level == 1:
+    if level == 0:
         return "{school} Cantrip".format(school=school)
-    return "{cardinallevel} Level {school}".format(cardinallevel=levels[level], school=school)
+    return "{cardinallevel} Level {school}".format(cardinallevel=levels[level-1], school=school)
 
 def get_components(components):
     comp_name = ["V", "S", "M"]

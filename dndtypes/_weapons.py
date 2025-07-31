@@ -1,33 +1,7 @@
 from dndtypes.__common import *
 
-"""
-  {
-    "count": 1,
-    "color": "dimgray",
-    "title": "Dagger",
-    "icon": "mixed-swords",
-    "contents": [
-      "subtitle | Simple melee weapon (2gp)",
-      "rule",
-      "property | Damage | 1d4 piercing",
-      "property | Modifier | Strength or Dexterity",
-      "property | Properties | Light, Finesse, Thrown (20/60)",
-      "rule",
-      "fill | 2",
-      "description | Finesse | Use your choice of Strength or Dexterity modifier for attack and damage.",
-      "description | Light | When you attack while dual wielding light weapons, you may use a bonus action to attack with your off hand.",
-      "description | Thrown | You can throw the weapon to make a ranged attack with the given range.",
-      "fill | 3"
-    ],
-    "tags": [
-      "item",
-      "weapon"
-    ]
-  },
-"""
-
 def get_damage(baseDamage, modifiers, type):
-    if modifiers is not None:
+    if modifiers is not None and len(modifiers) > 0 and modifiers[0]['value'] is not None:
         return "{dice}+{modifier} {type}".format(type=type, modifier=modifiers[0]['value'],dice=baseDamage['diceString']) 
     return "{dice} {type}".format(type=type, dice=baseDamage['diceString']) 
 

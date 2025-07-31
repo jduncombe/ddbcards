@@ -4,6 +4,7 @@ import argparse
 import os
 import sys
 from dndtypes import *
+from generator import generate
 
 version=0.1
 base_url="https://character-service.dndbeyond.com/character/v5/character/"
@@ -16,7 +17,7 @@ def get_character_json(char_id):
     if resp.status_code == 200:
         return json.loads(resp.content)
     else:
-        print("error reading character data")
+        print("error reading character data for {character_id}".format(character_id=char_id))
         sys.exit(-1)
 
 def parse_args():
@@ -43,5 +44,9 @@ if __name__ == "__main__":
         cardsjson.extend(convert_weapons(get_items_by_type(raw_inventory, "Weapon")))
         cardsjson.extend(convert_armor(get_items_by_type(raw_inventory, "Armor")))
         cardsjson.extend(convert_action(charjson["data"]["actions"]))
-        with open(os.path.join(args.output, name+".json"), mode="wt") as f:
-            json.dump(cardsjson, f)
+        generate(name, cardsjson, args.output)
+        print("Generated cards for {name} ({id})".format(name=name, id=id))
+    print("Cards generated successfully.")
+    print("Output saved to {output}".format(output=args.output))
+    print("You can now open the PDF files in the output directory.")
+    print("Enjoy your game!")   
